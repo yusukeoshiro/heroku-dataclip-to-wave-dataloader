@@ -11,6 +11,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'savon', '~> 2.11.0'
+gem 'rails_12factor'
+gem 'fastercsv', '~> 1.5', '>= 1.5.5'
+
 
 
 group :development, :test do
