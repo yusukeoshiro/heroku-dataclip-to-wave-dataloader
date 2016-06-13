@@ -13,3 +13,4 @@
 /tmp
 .env
 memo
+tmp_csv_file*

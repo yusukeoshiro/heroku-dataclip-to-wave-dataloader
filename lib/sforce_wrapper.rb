@@ -11,6 +11,22 @@ class SforceWrapper
 	end
 
 	def insert_record( sobject, payload )
+			
+			url = "#{self.server_url}/services/data/v36.0/sobjects/#{sobject}/"
+			uri = URI.parse(url)
+			https = Net::HTTP.new(uri.host, uri.port)
+			https.use_ssl = true
+			req = Net::HTTP::Post.new(uri.request_uri)
+			req["Content-Type"] = "application/json" 
+			req["Authorization"] = "Bearer #{self.session_id}" 
+			req.body = payload.to_json 
+			res = https.request(req)
+			p "***RESPONSE***"
+			pp res.to_hash
+			p "**************"
+			return res.to_hash["location"][0].split('/')[-1]
+
+
 		begin
 			url = "#{self.server_url}/services/data/v36.0/sobjects/#{sobject}/"
 			uri = URI.parse(url)
@@ -21,8 +37,12 @@ class SforceWrapper
 			req["Authorization"] = "Bearer #{self.session_id}" 
 			req.body = payload.to_json 
 			res = https.request(req)
+			p "-----------response"
+			pp res.to_hash
 			return res.to_hash["location"][0].split('/')[-1]
 		rescue Exception => e
+			p "***************ERROR**************"
+			p e.message
 			return nil
 		end
 	end

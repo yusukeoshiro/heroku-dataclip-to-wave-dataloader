@@ -1,0 +1,50 @@
+
+
+<div class="container" style="margin-top:100px;">
+
+
+	<% if flash[:notice] %>
+		<div class="alert alert-info" role="alert"><%=flash[:notice]%></div>
+	<% end %>
+
+
+	<h1>Heroku PG Dataclips -> Wave Analytics Loader</h1>
+
+	
+	<%= form_tag( {action: :index}, multipart: true) do %>
+
+
+		<fieldset>
+			<div class="clearfix">
+				<label>Username for Salesforce</label>
+				<%=email_field_tag :username, nil, class:"form-control", placeholder: "user@example.com"  %>
+			</div><br />
+			<div class="clearfix">
+				<label>Password for Salesforce</label>
+				<%=password_field_tag :password, nil, class:"form-control", placeholder: "salesforce password"  %>
+			</div><br />
+			<div class="clearfix">
+				<label>CSV URL</label>
+				<%=text_field_tag :csv_url, nil, class:"form-control", placeholder: "https://csvurl.com/file.csv"  %>
+			</div><br />
+			<div class="clearfix">
+				<label>Dataset Name</label>
+				<%=text_field_tag :dataset_url, nil, class:"form-control", placeholder: "Dataset Name"  %>
+			</div><br />
+			<div class="clearfix">
+				<label>Meta JSON</label>
+				<%=file_field_tag :meta_json, class:"form-control" %>
+			</div><br />
+
+
+			
+			<%=submit_tag "Start Load Job!", class:"btn btn-primary"%>
+
+
+		</fieldset>
+
+
+	<% end %>
+	
+
+</div>

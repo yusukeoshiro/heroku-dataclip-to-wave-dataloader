@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root :to => 'page#index'
+  post "/", :to => 'page#index'
+  #get 'home', :to => 'page#home'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

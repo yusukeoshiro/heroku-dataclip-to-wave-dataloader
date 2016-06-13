@@ -13,7 +13,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'savon', '~> 2.11.0'
 gem 'rails_12factor'
 gem 'fastercsv', '~> 1.5', '>= 1.5.5'
-
+gem 'redis'
+gem 'redis-rails'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'redis-namespace'
 
 
 group :development, :test do
