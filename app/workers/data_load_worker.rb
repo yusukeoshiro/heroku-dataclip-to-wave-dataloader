@@ -2,7 +2,7 @@ class DataLoadWorker
 	include Sidekiq::Worker
 	#sidekiq_options queue: :event
 
-	def perform( dataset_name, csv_url, username, password, meta_json )
+	def perform( dataset_name, csv_url, username, password, meta_json, phone )
 		
 		require 'open-uri'
 		require 'pp'
@@ -83,8 +83,20 @@ class DataLoadWorker
 			"Action" => "Process"
 			}
 			s.update_record( "InsightsExternalData", parent_record_id, payload )
+			
+			if phone.present?
+				blowerio = RestClient::Resource.new(ENV['BLOWERIO_URL'])
+				blowerio['/messages'].post :to => phone, :message => "analytics load completed for dataset '#{dataset_name}'"
+			end
+			
+
 		else
 			p "data loading header could not be created!"
+			if phone.present?
+				blowerio = RestClient::Resource.new(ENV['BLOWERIO_URL'])
+				blowerio['/messages'].post :to => phone, :message => "analytics load failed for dataset '#{dataset_name}'"
+			end
+
 		end
 
 

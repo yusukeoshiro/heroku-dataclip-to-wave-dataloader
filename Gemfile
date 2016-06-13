@@ -19,7 +19,8 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'redis-namespace'
 gem 'puma'
-
+gem 'rest-client'
+gem 'addressable'
 
 group :development, :test do
   gem 'byebug'
@@ -27,6 +28,7 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
+  gem 'dotenv-rails'
 
   gem 'spring'
 end
