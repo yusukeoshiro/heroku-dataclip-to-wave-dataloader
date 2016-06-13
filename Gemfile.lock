@@ -89,6 +89,7 @@ GEM
     nori (2.6.0)
     pg (0.18.4)
     pkg-config (1.1.7)
+    puma (3.4.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -208,6 +209,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.15)
+  puma
   rails (= 4.2.5)
   rails_12factor
   redis

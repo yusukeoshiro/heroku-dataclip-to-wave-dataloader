@@ -18,6 +18,7 @@ gem 'redis-rails'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'redis-namespace'
+gem 'puma'
 
 
 group :development, :test do
