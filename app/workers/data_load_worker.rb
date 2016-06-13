@@ -6,7 +6,21 @@ class DataLoadWorker
 		
 		require 'open-uri'
 		require 'pp'
-		
+
+
+		payload = {
+			"Format" => "Csv",
+			"EdgemartAlias" => dataset_name,
+			"MetadataJson" => meta_json,
+			"Operation" => "Overwrite",
+			"Action" => "None"
+		}
+
+		s = SforceWrapper.new(username, password)
+		parent_record_id = s.insert_record( "InsightsExternalData", payload )
+
+
+
 		original_file_name = "tmp_csv_file-" + SecureRandom.hex(5)
 		file_names = [ original_file_name+"-1" ] # contains the list smaller chunks of files
 		
@@ -56,9 +70,9 @@ class DataLoadWorker
 			file_names.each_with_index do |file_name, index|
 			p "uploading part: #{file_name}"
 			payload = {
-			"DataFile" => Base64.encode64(File.read(file_name)),
-			"InsightsExternalDataId" => parent_record_id,
-			"PartNumber" => index+1
+				"DataFile" => Base64.encode64(File.read(file_name)),
+				"InsightsExternalDataId" => parent_record_id,
+				"PartNumber" => index+1
 			}
 			s.insert_record( "InsightsExternalDataPart", payload )
 			File.delete(file_name)
