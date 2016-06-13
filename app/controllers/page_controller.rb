@@ -13,7 +13,7 @@ class PageController < ApplicationController
 			
 			DataLoadWorker.perform_async(dataset_name, csv_url, username, password, meta_json,phone)
 
-			flash[:notice] = "Go grab a coffeee! it is going to take a while..."
+			flash[:notice] = "Go grab a coffee! it is going to take a while..."
 
 			
 		end

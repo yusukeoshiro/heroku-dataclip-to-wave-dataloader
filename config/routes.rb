@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   root :to => 'page#index'
   post "/", :to => 'page#index'
+
+
+  
+  require "sidekiq/web"
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == ENV["SIDEKIQ_USERNAME"] && password == ENV["SIDEKIQ_PASSWORD"]
+  end if Rails.env.production?
+  mount Sidekiq::Web, at: "/sidekiq"
+
+
   #get 'home', :to => 'page#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
