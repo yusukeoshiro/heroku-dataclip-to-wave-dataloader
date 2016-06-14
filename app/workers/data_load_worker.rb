@@ -63,14 +63,14 @@ class DataLoadWorker
 		
 		if parent_record_id
 			file_names.each_with_index do |file_name, index|
-			p "uploading part: #{file_name}"
-			payload = {
-				"DataFile" => Base64.encode64(File.read(file_name)),
-				"InsightsExternalDataId" => parent_record_id,
-				"PartNumber" => index+1
-			}
-			s.insert_record( "InsightsExternalDataPart", payload )
-			File.delete(file_name)
+				p "uploading part: #{file_name}"
+				payload = {
+					"DataFile" => Base64.encode64(File.read(file_name)),
+					"InsightsExternalDataId" => parent_record_id,
+					"PartNumber" => index+1
+				}
+				s.insert_record( "InsightsExternalDataPart", payload )
+				File.delete(file_name)
 			end
 
 
