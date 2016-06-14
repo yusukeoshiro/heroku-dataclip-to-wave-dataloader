@@ -1,28 +1,9 @@
-== README
+Heroku Dataclips to Wave Analytics Data loader
+***
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Make dataloading from Heroku Postgres to Wave Analytics a breeze.
+This app will ask for your salesforce credential and link to your heroku dataclips
+and load the data retrieved from heroku dataclips onto Wave Analytics with the given dataset name.
 
-Things you may want to cover:
+[See it in action on heroku](https://wave-data-loader.herokuapp.com/)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
