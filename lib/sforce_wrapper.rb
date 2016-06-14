@@ -21,10 +21,32 @@ class SforceWrapper
 			req["Authorization"] = "Bearer #{self.session_id}" 
 			req.body = payload.to_json 
 			res = https.request(req)
+			code = res.code
 			p "***RESPONSE***"
+			p "-----"
 			pp res.to_hash
 			p "**************"
-			return res.to_hash["location"][0].split('/')[-1]
+
+			result = {
+				"success": nil,
+				"record_id": nil,
+				"message": nil
+			}
+
+			if code == "201"
+				#created!
+				result[:success] = true
+				result[:record_id] = res.to_hash["location"][0].split('/')[-1]
+
+				return result
+			else
+				#failed for some reason
+				result[:success] = false
+				result[:message] = JSON.parse(res.read_body())[0]["message"]
+				return result
+			end
+			
+			
 
 
 		begin

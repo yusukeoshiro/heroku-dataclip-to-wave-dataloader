@@ -2,7 +2,7 @@ class DataLoadWorker
 	include Sidekiq::Worker
 	#sidekiq_options queue: :event
 
-	def perform( dataset_name, csv_url, username, password, meta_json, phone )
+	def perform( dataset_name, csv_url, username, password, meta_json, phone, parent_record_id )
 		
 		require 'open-uri'
 		require 'pp'
@@ -15,10 +15,6 @@ class DataLoadWorker
 			"Operation" => "Overwrite",
 			"Action" => "None"
 		}
-
-		s = SforceWrapper.new(username, password)
-		parent_record_id = s.insert_record( "InsightsExternalData", payload )
-
 
 
 		original_file_name = "tmp_csv_file-" + SecureRandom.hex(5)
@@ -63,8 +59,6 @@ class DataLoadWorker
 			"Action" => "None"
 		}
 
-		s = SforceWrapper.new(username, password)
-		parent_record_id = s.insert_record( "InsightsExternalData", payload )
 
 		if parent_record_id
 			file_names.each_with_index do |file_name, index|

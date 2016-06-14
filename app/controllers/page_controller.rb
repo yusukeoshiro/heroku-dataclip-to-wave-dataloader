@@ -11,9 +11,28 @@ class PageController < ApplicationController
 			phone = params["phone"]
 
 			
-			DataLoadWorker.perform_async(dataset_name, csv_url, username, password, meta_json,phone)
 
-			flash[:notice] = "Go grab a coffee! it is going to take a while..."
+			payload = {
+				"Format" => "Csv",
+				"EdgemartAlias" => dataset_name,
+				"MetadataJson" => meta_json,
+				"Operation" => "Overwrite",
+				"Action" => "None"
+			}
+
+
+			s = SforceWrapper.new(username, password)
+			result = s.insert_record( "InsightsExternalData", payload )
+
+			if result[:success]
+				DataLoadWorker.perform_async(dataset_name, csv_url, username, password, meta_json,phone, result[:record_id])
+				flash[:notice] = "Go grab a coffee! it is going to take a while..."
+
+			else
+				flash[:error] = result[:message]
+			end
+
+
 
 			
 		end
