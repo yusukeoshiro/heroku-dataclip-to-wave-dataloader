@@ -59,7 +59,8 @@ class DataLoadWorker
 			"Action" => "None"
 		}
 
-
+		s = SforceWrapper.new(username, password)
+		
 		if parent_record_id
 			file_names.each_with_index do |file_name, index|
 			p "uploading part: #{file_name}"
