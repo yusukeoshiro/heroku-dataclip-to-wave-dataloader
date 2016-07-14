@@ -29,8 +29,14 @@ class Job < ActiveRecord::Base
 
 		result = s.insert_record( "InsightsExternalData", payload )
 
+
+		p "inserting header...."
+		pp result
+
+		p "...done"
+
 		if result[:success]
-			perform(self.dataset_name, self.csv_url, self.username, self.password, self.meta_json,self.mobile, result[:record_id])			
+			perform(self.dataset_name, self.csv_url, self.username, self.password, self.meta_json,self.mobile, result[:record_id])
 		end
 
 		self.next_job = get_next_job(self)
