@@ -1,0 +1,41 @@
+  <div class="container">
+
+
+    <p id="notice"><%= notice %></p>
+
+    <h1>Listing Jobs</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Dataset Name</th>
+          <th>Username</th>
+          <th>Hour of Day</th>
+          <th>Next Job</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @jobs.each do |job| %>
+
+
+        <tr>
+          <td><%= job.name%></td>
+          <td><%= job.dataset_name%></td>
+          <td><%= job.username%></td>
+          <td><%= job.hour_of_day%></td>
+          <td><%= job.next_job%></td>
+          <td><%= link_to 'Show', job %></td>
+          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Job', new_job_path %>
+
+  </div>

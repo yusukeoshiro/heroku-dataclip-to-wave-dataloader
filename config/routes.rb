@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root :to => 'page#index'
+  resources :jobs
+  #root :to => 'page#index'
+  root :to => 'jobs#index'
   post "/", :to => 'page#index'
-
+  get "/onetime", :to => "page#index"
 
   
   require "sidekiq/web"

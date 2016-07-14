@@ -19,6 +19,36 @@
 </head>
 <body>
 
+
+
+
+
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+			<span class="navbar-brand">Wave Data Loader</span>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+
+
+					<li>
+						<%=link_to root_path do%>
+						Schedule Data Load
+						<% end %>
+					</li>
+
+					<li>
+						<%=link_to onetime_path do%>
+						One Time Data Load
+						<% end %>
+					</li>
+
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+
 <%= yield %>
 
 

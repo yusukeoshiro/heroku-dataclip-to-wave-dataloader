@@ -31,9 +31,6 @@ class PageController < ApplicationController
 			else
 				flash[:error] = result[:message]
 			end
-
-
-
 			
 		end
 

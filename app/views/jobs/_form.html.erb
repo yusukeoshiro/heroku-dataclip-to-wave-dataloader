@@ -1,0 +1,74 @@
+<%= form_for(@job, :html => {:multipart => true}) do |f| %>
+
+  <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+      <% @job.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :csv_url %><br>
+    <%= f.text_field :csv_url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dataset_name %><br>
+    <%= f.text_field :dataset_name %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :mobile %><br>
+    <%= f.text_field :mobile %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :hour_of_day %><br>
+    <%= f.number_field :hour_of_day %>
+    <span>please enter between 0 and 23</span>
+  </div>
+
+
+  <div class="clearfix">
+    <label>Meta JSON</label>
+    <%=file_field_tag :meta_json, class:"form-control" %>
+  </div><br />
+
+
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+

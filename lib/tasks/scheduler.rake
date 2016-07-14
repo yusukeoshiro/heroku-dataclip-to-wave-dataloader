@@ -1,5 +1,10 @@
-desc "This task is called by the Heroku scheduler add-on"
-task :test_task => :environment do
-	p "test task was fired!"
+task :run_schedule => :environment do
+
+	Job.due.each do |j|
+		j.run_job
+	end
+
 end
+
+
 

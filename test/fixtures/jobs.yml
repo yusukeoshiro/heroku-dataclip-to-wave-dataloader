@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  username: MyString
+  password: MyString
+  csv_url: MyString
+  dataset_name: MyString
+  meta_json: MyString
+  mobile: MyString
+  next_job: 2016-06-22 13:48:47
+  interval_sec: 1
+
+two:
+  name: MyString
+  username: MyString
+  password: MyString
+  csv_url: MyString
+  dataset_name: MyString
+  meta_json: MyString
+  mobile: MyString
+  next_job: 2016-06-22 13:48:47
+  interval_sec: 1

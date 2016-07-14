@@ -11,7 +11,8 @@ class SforceWrapper
 	end
 
 	def insert_record( sobject, payload )
-			
+			require "pp"
+
 			url = "#{self.server_url}/services/data/v36.0/sobjects/#{sobject}/"
 			uri = URI.parse(url)
 			https = Net::HTTP.new(uri.host, uri.port)
