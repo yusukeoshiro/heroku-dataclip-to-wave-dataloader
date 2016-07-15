@@ -57,7 +57,7 @@ class Job < ActiveRecord::Base
 	end
 
 	def get_next_job( job )
-		rightnow = DateTime.now
+		rightnow = Time.now.utc
 		if self.hour_of_day <= rightnow.hour
 			# already passed, next job is next day
 			return DateTime.new(rightnow.year, rightnow.month, rightnow.day, job.hour_of_day, 0, 0) + 1
