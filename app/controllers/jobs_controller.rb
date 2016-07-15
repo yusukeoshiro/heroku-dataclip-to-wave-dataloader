@@ -4,6 +4,8 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
+    @current_time = Time.now.utc
+    
     @jobs = Job.all
   end
 
