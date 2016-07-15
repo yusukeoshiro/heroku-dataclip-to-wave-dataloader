@@ -2,7 +2,7 @@ class Job < ActiveRecord::Base
 
 	#scope 
 
-	scope :due, -> { where("next_job < ?", DateTime.now) }
+	scope :due, -> { where("next_job <= ?", DateTime.now) }
 
 	before_save :update_next_job
 
