@@ -80,8 +80,13 @@ class DataLoadWorker
 			s.update_record( "InsightsExternalData", parent_record_id, payload )
 			
 			if phone.present?
-				blowerio = RestClient::Resource.new(ENV['BLOWERIO_URL'])
-				blowerio['/messages'].post :to => phone, :message => "analytics load completed for dataset '#{dataset_name}'"
+				begin
+					blowerio = RestClient::Resource.new(ENV['BLOWERIO_URL'])
+					blowerio['/messages'].post :to => phone, :message => "analytics load completed for dataset '#{dataset_name}'"	
+				rescue Exception => e
+					p "sms failed for some reason"
+					p e.message
+				end				
 			end
 			
 
