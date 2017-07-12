@@ -1,3 +1,28 @@
+<script type="text/javascript">
+
+function runJob( jobid ){
+
+
+  $.ajax({
+    type: "POST",
+    url: "/run_now",
+    data: {
+      job_id: jobid
+    },
+    success: function(data){
+      alert("in progress! be patient!");
+    },
+    error: function(){
+      alert("error");
+    }
+    
+  });
+
+}
+
+
+</script>
+
   <div class="container">
 
 
@@ -18,7 +43,7 @@
           <th>Username</th>
           <th>Hour of Day</th>
           <th>Next Job</th>
-          <th colspan="2"></th>
+          <th colspan="3"></th>
         </tr>
       </thead>
 
@@ -34,6 +59,7 @@
           <td><%= job.next_job%></td>
           <td><%= link_to 'Show', job %></td>
           <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><a onclick="runJob( <%= job.id%> );">Run now</a></td>
         </tr>
         <% end %>
       </tbody>

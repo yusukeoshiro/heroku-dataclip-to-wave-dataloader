@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root :to => 'jobs#index'
   post "/", :to => 'page#index'
   get "/onetime", :to => "page#index"
+  post "/run_now", :to => "api#run_job"
 
   
   require "sidekiq/web"
